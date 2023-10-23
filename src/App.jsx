@@ -1,7 +1,7 @@
 
 const App = () => {
   return (
-    <div>Encuesta de satisfacción</div>
+    <div>Formulario de quejas anticorrupción</div>
   )
 }
 
