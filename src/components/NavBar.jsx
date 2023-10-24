@@ -7,7 +7,6 @@ const NavBar = () => {
         src="https://res.cloudinary.com/dnrcmjyu1/image/upload/v1698147373/Gomez%20Corp/Pemex-Logo-500x283_cnlhco.png"
         alt="PEMEX Logo"
       />
-
       <Img
         src="https://res.cloudinary.com/dnrcmjyu1/image/upload/v1689748432/Gomez%20Corp/GomezCorpLogo_iodwuc.png"
         alt="Gomez Corp Logo"

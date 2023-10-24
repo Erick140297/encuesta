@@ -1,12 +1,13 @@
-import NavBar from "./components/NavBar"
+import Form from "./components/Form";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
     <div>
-      <NavBar/>
-      <div>Formulario de quejas anticorrupción</div>
+      <NavBar />
+      <Form />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
