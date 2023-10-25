@@ -5,7 +5,7 @@ const Form = () => {
   const [selectedOption, setSelectedOption] = useState("");
 
   const [input, setInput] = useState({
-    station:"",
+    station: "",
     description: "",
     name: "",
     lastName1: "",
@@ -26,13 +26,73 @@ const Form = () => {
     });
   };
 
+  const validateForm = () => {
+    const { number, email } = input;
+
+    // Validación específica para el campo 'number'
+    if (number && !/^\d{10}$/.test(number)) {
+      alert(
+        'El campo "Número de teléfono" debe contener exactamente 10 dígitos numéricos.'
+      );
+      return false;
+    }
+
+    // Validación específica para el campo 'email' como una dirección de correo electrónico
+    if (email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+      alert("Por favor, ingrese una dirección de correo electrónico válida.");
+      return false;
+    }
+
+    // Validación general para campos 'station', 'name', 'lastName1', 'lastName2', y 'client'
+    const generalValidationFields = [
+      "station",
+      "name",
+      "lastName1",
+      "lastName2",
+      "client",
+    ];
+    for (const field of generalValidationFields) {
+      if (!input[field] || !/^[a-zA-Z\s]+$/.test(input[field])) {
+        alert(`Los campos con nombres o apellidos no deben contener números ni símbolos.`);
+        return false;
+      }
+    }
+
+    // Si todas las validaciones pasan, puedes continuar con el envío del formulario
+    return true;
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    
+  
+    if (
+      !input.station ||
+      !selectedOption ||
+      !input.description ||
+      !input.name ||
+      !input.lastName1 ||
+      !input.client
+    ) {
+      alert("Por favor complete todos los campos obligatorios.");
+      return; // No continúes si los campos obligatorios no están completos
+    }
+  
+    if (!input.number && !input.email) {
+      alert(
+        "Debe proporcionar al menos un número de teléfono o una dirección de correo electrónico."
+      );
+      return; // No continúes si no se proporciona número ni email
+    }
+  
+    // Ahora, realiza la validación de formulario específica
+    if (!validateForm()) {
+      return; // No continúes si la validación específica no pasa
+    }
+  
+    // Si todas las validaciones pasan, puedes continuar con el envío del formulario
     setSelectedOption("");
     setInput({
-      ...input,
-      station:"",
+      station: "",
       description: "",
       name: "",
       lastName1: "",
@@ -42,6 +102,7 @@ const Form = () => {
       email: "",
     });
   };
+  
 
   console.log(input);
 
@@ -51,11 +112,11 @@ const Form = () => {
       <form>
         <Question>1. Nombre de la estación de servicio:</Question>
         <InputText
-            type="text"
-            name="station"
-            value={input.station}
-            onChange={handleChange}
-          />
+          type="text"
+          name="station"
+          value={input.station}
+          onChange={handleChange}
+        />
         <Question>{`2. Seleccione la queja asociada al acto de corrupción que se denuncia. (Nota: Debe seleccionar una opción para poderle dar seguimiento a su queja.)`}</Question>
         <Options>
           <label>
@@ -129,21 +190,20 @@ const Form = () => {
           />
           <Question>Proporcionenos al menos una forma de contactarlo.</Question>
           <SubContainer>
-
-          <Question>Número de teléfono o celular:</Question>
-          <InputText
-            type="tel"
-            name="number"
-            value={input.number}
-            onChange={handleChange}
-          />
-          <Question>Correo electrónico:</Question>
-          <InputText
-            type="email"
-            name="email"
-            value={input.email}
-            onChange={handleChange}
-          />
+            <Question>Número de teléfono o celular:</Question>
+            <InputText
+              type="tel"
+              name="number"
+              value={input.number}
+              onChange={handleChange}
+            />
+            <Question>Correo electrónico:</Question>
+            <InputText
+              type="email"
+              name="email"
+              value={input.email}
+              onChange={handleChange}
+            />
           </SubContainer>
         </SubContainer>
         <Center>
