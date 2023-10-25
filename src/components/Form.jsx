@@ -5,6 +5,7 @@ const Form = () => {
   const [selectedOption, setSelectedOption] = useState("");
 
   const [input, setInput] = useState({
+    station:"",
     description: "",
     name: "",
     lastName1: "",
@@ -31,6 +32,7 @@ const Form = () => {
     setSelectedOption("");
     setInput({
       ...input,
+      station:"",
       description: "",
       name: "",
       lastName1: "",
@@ -47,7 +49,14 @@ const Form = () => {
     <Container>
       <Title>Formulario de quejas anticorrupción</Title>
       <form>
-        <Question>{`1. Seleccione la queja asociada al acto de corrupción que se denuncia. (Nota: Debe seccionar una opción para poderle dar seguimiento a su queja.)`}</Question>
+        <Question>1. Nombre de la estación de servicio:</Question>
+        <InputText
+            type="text"
+            name="station"
+            value={input.station}
+            onChange={handleChange}
+          />
+        <Question>{`2. Seleccione la queja asociada al acto de corrupción que se denuncia. (Nota: Debe seleccionar una opción para poderle dar seguimiento a su queja.)`}</Question>
         <Options>
           <label>
             <input
@@ -79,13 +88,13 @@ const Form = () => {
             Opción 3
           </label>
         </Options>
-        <Question>2. Descripción de la queja:</Question>
+        <Question>3. Descripción de la queja:</Question>
         <TextArea
           name="description"
           value={input.description}
           onChange={handleChange}
         ></TextArea>
-        <Question>3. Nombre del personal implicado.</Question>
+        <Question>4. Nombre del personal implicado.</Question>
         <SubContainer>
           <Question>Nombre(s):</Question>
           <InputText
@@ -109,7 +118,7 @@ const Form = () => {
             onChange={handleChange}
           />
         </SubContainer>
-        <Question>4. Datos del cliente.</Question>
+        <Question>5. Datos del cliente.</Question>
         <SubContainer>
           <Question>Nombre completo:</Question>
           <InputText
@@ -118,7 +127,10 @@ const Form = () => {
             value={input.client}
             onChange={handleChange}
           />
-          <Question>Número de telefono o celular:</Question>
+          <Question>Proporcionenos al menos una forma de contactarlo.</Question>
+          <SubContainer>
+
+          <Question>Número de teléfono o celular:</Question>
           <InputText
             type="tel"
             name="number"
@@ -132,6 +144,7 @@ const Form = () => {
             value={input.email}
             onChange={handleChange}
           />
+          </SubContainer>
         </SubContainer>
         <Center>
           <Button onClick={(e) => onSubmit(e)}>Enviar</Button>
@@ -210,4 +223,9 @@ const Button = styled.button`
   border-radius: 5px;
   background: #46e146;
   border: 1px solid green;
+  font-size: 20px;
+
+  @media (max-width: 900px) {
+    font-size: 15px;
+  }
 `;
