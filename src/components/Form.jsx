@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 const Form = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -94,7 +94,7 @@ const Form = () => {
 
     emailjs
       .send(
-        "service_afq7dll",
+        "service_shkll3o",
         "template_vevuvhe",
         variables,
         "DxTMuo6MhsoqoG14Z"
@@ -117,6 +117,11 @@ const Form = () => {
   return (
     <Container>
       <Title>Formulario de quejas anticorrupción</Title>
+      <SubTitle>
+        {
+          "La información generada por este medio de comunicación es confidencial, y sera usada única y esclusivamente por la empresa para conocer, asesorar, investigar y, en su caso, sancionar las faltas de Ética y Conducta."
+        }
+      </SubTitle>
       <form>
         <Question>1. Nombre de la estación de servicio:</Question>
         <InputText
@@ -230,6 +235,7 @@ const Container = styled.div`
   border-radius: 15px;
   padding: 20px;
 `;
+
 const Title = styled.h2`
   text-align: center;
   margin-bottom: 20px;
@@ -237,6 +243,16 @@ const Title = styled.h2`
 
   @media (max-width: 500px) {
     font-size: 18px;
+  }
+`;
+
+const SubTitle = styled.h2`
+  text-align: justify;
+  margin-bottom: 20px;
+  font-size: 18px;
+
+  @media (max-width: 500px) {
+    font-size: 14px;
   }
 `;
 
