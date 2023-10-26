@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import emailjs from '@emailjs/browser';
 
 const Form = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -29,7 +30,6 @@ const Form = () => {
   const validateForm = () => {
     const { number, email } = input;
 
-    // Validación específica para el campo 'number'
     if (number && !/^\d{10}$/.test(number)) {
       alert(
         'El campo "Número de teléfono" debe contener exactamente 10 dígitos numéricos.'
@@ -37,13 +37,11 @@ const Form = () => {
       return false;
     }
 
-    // Validación específica para el campo 'email' como una dirección de correo electrónico
     if (email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
       alert("Por favor, ingrese una dirección de correo electrónico válida.");
       return false;
     }
 
-    // Validación general para campos 'station', 'name', 'lastName1', 'lastName2', y 'client'
     const generalValidationFields = [
       "station",
       "name",
@@ -53,18 +51,19 @@ const Form = () => {
     ];
     for (const field of generalValidationFields) {
       if (!input[field] || !/^[a-zA-Z\s]+$/.test(input[field])) {
-        alert(`Los campos con nombres o apellidos no deben contener números ni símbolos.`);
+        alert(
+          `Los campos con nombres o apellidos no deben contener números ni símbolos.`
+        );
         return false;
       }
     }
 
-    // Si todas las validaciones pasan, puedes continuar con el envío del formulario
     return true;
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-  
+
     if (
       !input.station ||
       !selectedOption ||
@@ -74,22 +73,34 @@ const Form = () => {
       !input.client
     ) {
       alert("Por favor complete todos los campos obligatorios.");
-      return; // No continúes si los campos obligatorios no están completos
+      return;
     }
-  
+
     if (!input.number && !input.email) {
       alert(
         "Debe proporcionar al menos un número de teléfono o una dirección de correo electrónico."
       );
-      return; // No continúes si no se proporciona número ni email
+      return;
     }
-  
-    // Ahora, realiza la validación de formulario específica
+
     if (!validateForm()) {
-      return; // No continúes si la validación específica no pasa
+      return;
     }
-  
-    // Si todas las validaciones pasan, puedes continuar con el envío del formulario
+
+    const variables = {
+      ...input,
+      queja: selectedOption,
+    };
+
+    emailjs
+      .send(
+        "service_afq7dll",
+        "template_vevuvhe",
+        variables,
+        "DxTMuo6MhsoqoG14Z"
+      )
+      .then(alert("Queja enviada exitosamente"));
+
     setSelectedOption("");
     setInput({
       station: "",
@@ -102,9 +113,6 @@ const Form = () => {
       email: "",
     });
   };
-  
-
-  console.log(input);
 
   return (
     <Container>
