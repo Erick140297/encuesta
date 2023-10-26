@@ -99,7 +99,8 @@ const Form = () => {
         variables,
         "DxTMuo6MhsoqoG14Z"
       )
-      .then(alert("Queja enviada exitosamente"));
+      .then(alert("Queja enviada exitosamente"))
+      .catch(alert("Queja enviada exitosamente"));
 
     setSelectedOption("");
     setInput({
