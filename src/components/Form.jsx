@@ -50,7 +50,7 @@ const Form = () => {
       "client",
     ];
     for (const field of generalValidationFields) {
-      if (!input[field] || !/^[a-zA-Z\s]+$/.test(input[field])) {
+      if (!input[field] || !/^[a-zA-Z\s,.]+$/.test(input[field])) {
         alert(
           `Los campos con nombres o apellidos no deben contener números ni símbolos.`
         );
