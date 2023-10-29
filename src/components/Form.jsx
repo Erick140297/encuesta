@@ -136,32 +136,85 @@ const Form = () => {
           <label>
             <input
               type="radio"
-              value="opcion1"
-              checked={selectedOption === "opcion1"}
+              value="Soborno o abuso de cargo de poder."
+              checked={selectedOption === "Soborno o abuso de cargo de poder."}
               onChange={handleOptionChange}
             />
-            Opción 1
+            {" Soborno o abuso de cargo de poder."}
           </label>
           <br />
           <label>
             <input
               type="radio"
-              value="opcion2"
-              checked={selectedOption === "opcion2"}
+              value="Uso de sustancias ilicitas (drogas o alcohol; consumo, venta, compra y/o distribución)."
+              checked={
+                selectedOption ===
+                "Uso de sustancias ilicitas (drogas o alcohol; consumo, venta, compra y/o distribución)."
+              }
               onChange={handleOptionChange}
             />
-            Opción 2
+            {
+              " Uso de sustancias ilicitas (drogas o alcohol; consumo, venta, compra y/o distribución)."
+            }
           </label>
           <br />
           <label>
             <input
               type="radio"
-              value="opcion3"
-              checked={selectedOption === "opcion3"}
+              value="Actos de represalias."
+              checked={selectedOption === "Actos de represalias."}
               onChange={handleOptionChange}
             />
-            Opción 3
+            {" Actos de represalias."}
           </label>
+          <br />
+          <label>
+            <input
+              type="radio"
+              value="Acoso y hostigamiento sexual."
+              checked={selectedOption === "Acoso y hostigamiento sexual."}
+              onChange={handleOptionChange}
+            />
+            {" Acoso y hostigamiento sexual."}
+          </label>
+          <br />
+          <label>
+            <input
+              type="radio"
+              value="Actos de discriminación o exclusión."
+              checked={
+                selectedOption === "Actos de discriminación o exclusión."
+              }
+              onChange={handleOptionChange}
+            />
+            {" Actos de discriminación o exclusión."}
+          </label>
+          <br />
+          <label>
+            <input
+              type="radio"
+              value="Manejo indebido o divulgación de la información usada con fines de dolo (externo e interno)."
+              checked={
+                selectedOption ===
+                "Manejo indebido o divulgación de la información usada con fines de dolo (externo e interno)."
+              }
+              onChange={handleOptionChange}
+            />
+            {
+              " Manejo indebido o divulgación de la información usada con fines de dolo (externo e interno."
+            }
+          </label>
+          <br />
+          <label>
+            <input
+              type="radio"
+              value="Mobbing o acoso laboral."
+              checked={selectedOption === "Mobbing o acoso laboral."}
+              onChange={handleOptionChange}
+            />
+            {" Mobbing o acoso laboral."}
+          </label>
+          <br />
         </Options>
         <Question>3. Descripción de la queja:</Question>
         <TextArea
